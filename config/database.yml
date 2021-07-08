@@ -1,17 +1,16 @@
-development:
-  adapter: sqlite3
-  database: db/development.sqlite3
+default: &default
+  adapter: postgresql
+  encoding: unicode
   pool: 5
-  timeout: 5000
+
+development:
+  <<: *default
+  database: tickets_development
 
 test:
-  adapter: sqlite3
-  database: db/test.sqlite3
-  pool: 5
-  timeout: 5000
+  <<: *default
+  database: tickets_test
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
-  pool: 5
-  timeout: 5000
+  <<: *default
+  database: tickets_production
