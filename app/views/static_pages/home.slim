@@ -1,0 +1,17 @@
+-flash.each do |type, msg|
+  = msg
+= link_to "Add Group", new_group_path, class: "button is-primary mb-5"
+.columns.is-multiline
+	- @groups.each do |group|
+		.column.is-3
+			.card
+				header.card-header
+					p.card-header-title
+						= link_to "#{group.title}", group_path(group.id) 
+				.card-content
+					.content
+						= group.description.first(100)
+						
+				footer.card-footer
+					= link_to "Edit", edit_group_path(group.id), class: "card-footer-item"
+					= link_to "Delete", group_path(group.id), method: :delete, class: "card-footer-item"

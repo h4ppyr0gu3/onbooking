@@ -1,0 +1,30 @@
+.is-size-3
+	= @group.title
+-flash.each do |type, msg|
+	= msg
+- @members.each do |member|
+	hr
+	hr
+	.columns
+		.column
+			.label.is-size-4
+				= link_to "#{member.name}", member_tickets_path(member.uuid)
+			input.button.copy name="/member/#{member.uuid}" value="copy" type="submit"
+			.columns
+				- member.tickets.each do |ticket|
+					.column
+						= ticket.title
+						br
+						= link_to "remove", ticket_path(ticket.id), method: :delete
+			= form_with model: @ticket, url: tickets_path, method: :post do |form|
+				.field
+					.label Title
+					.control
+						= form.text_field :title, class: "input"
+				= form.file_field :documents, multiple: true, direct_upload: true, class: ""
+				.field
+					.control
+						= form.hidden_field(:member_id, value: member.id)
+				= form.submit class: "button is-link"
+
+= javascript_pack_tag "copy_to_clipboard"

@@ -1,0 +1,11 @@
+.container
+	.label.is-size-4
+		= @member.name
+	- @tickets.each do |ticket|
+		.columns	
+			.column
+				= ticket.title
+			.column
+				- ticket.documents.each do |file|
+					= link_to "download", url_for(file), class: "button"
+

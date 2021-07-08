@@ -1,0 +1,15 @@
+.is-size-3 New Group
+-flash.each do |type, msg|
+	= msg
+= form_with model: @group, method: :post do |form|
+	.field
+		.label Title
+		.control
+			= form.text_field :title, class: "input"
+	.field
+		.label Description
+		.control
+			= form.text_area :description, class: "textarea"
+	.field
+		.control
+			= form.submit class: "button is-primary"

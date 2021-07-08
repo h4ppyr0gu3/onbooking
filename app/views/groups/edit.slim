@@ -1,0 +1,35 @@
+h1.is-size-3 Editing Group
+-flash.each do |type, msg|
+  = msg
+- @members.each do |m|
+	= form_with model: m, method: :patch do |form|
+		.field
+			.label Name
+			.control
+				= form.text_field :name, class: "input"
+		.field.is-grouped
+			.control
+				= form.submit class: "button is-link"
+			.control
+				= link_to "Remove", member_path(m.id, group_id: @group.id), method: :delete, class: "button is-danger"
+
+= form_with model: @member, method: :post, url: members_path do |form|
+	.field
+		.label Name
+		.control
+			= form.text_field :name, class: "input"
+	= form.hidden_field(:group_id, value: @group.id)
+	= form.submit class: "button is-link"
+
+= form_with model: @group, method: :patch do |form|
+	.field
+		.label Title
+		.control
+			= form.text_field :title, class: "input"
+	.field
+		.label Description
+		.control
+			= form.text_area :description, class: "textarea"
+	.field
+		.control
+			= form.submit class: "button is-primary"
