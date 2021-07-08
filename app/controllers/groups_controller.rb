@@ -21,7 +21,7 @@ class GroupsController < ApplicationController
     if @group.save
       redirect_to root_path, notice: "Group was successfully created."
     else
-      redirect_to request.env["HTTP_REFERER"], notice: @group.errors
+      redirect_back(notice: @group.errors)
     end
   end
 
@@ -29,7 +29,7 @@ class GroupsController < ApplicationController
     if @group.update(group_params)
       redirect_to root_path, notice: "Group was successfully updated."
     else
-      redirect_to request.env["HTTP_REFERER"], notice: @group.errors
+      redirect_back(notice: @group.errors)
     end
   end
 

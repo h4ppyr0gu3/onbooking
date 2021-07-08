@@ -1,6 +1,7 @@
 .is-size-3 New Group
--flash.each do |type, msg|
-	= msg
+.has-background-warning-dark.has-text-white
+	-flash.each do |type, msg|
+		= msg
 = form_with model: @group, method: :post do |form|
 	.field
 		.label Title

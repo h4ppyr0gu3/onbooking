@@ -12,23 +12,23 @@ class MembersController < ApplicationController
     @member = Member.new(member_params)
     @member.uuid = SecureRandom.uuid
     if @member.save
-      redirect_to request.env["HTTP_REFERER"], notice: "Created successfully"
+      redirect_back(notice: "Member created")      
     else
-      redirect_to request.env["HTTP_REFERER"], notice: @member.errors 
+      redirect_back(notice: @member.errors)
     end
   end
 
   def update
     if @member.update(member_params)
-      redirect_to request.env["HTTP_REFERER"], notice: "Member was successfully updated." 
+      redirect_back(notice: "Member updated")      
     else
-      redirect_to request.env["HTTP_REFERER"], notice: @member.errors 
+      redirect_back(notice: @member.errors)
     end
   end
 
   def destroy
     @member.destroy
-    redirect_to request.env["HTTP_REFERER"]
+    redirect_back(notice: "Member deleted")      
   end
 
   private

@@ -1,5 +1,6 @@
--flash.each do |type, msg|
-  = msg
+.has-background-warning-dark.has-text-white
+	-flash.each do |type, msg|
+	  = msg
 = link_to "Add Group", new_group_path, class: "button is-primary mb-5"
 .columns.is-multiline
 	- @groups.each do |group|

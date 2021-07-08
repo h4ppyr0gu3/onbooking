@@ -1,9 +1,9 @@
 .is-size-3
-	= @group.title
--flash.each do |type, msg|
-	= msg
+	= link_to "#{@group.title}", edit_group_path(@group.id)
+.has-background-warning-dark.has-text-white
+	-flash.each do |type, msg|
+		= msg
 - @members.each do |member|
-	hr
 	hr
 	.columns
 		.column

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :tickets
+  resources :tickets, only: %i[ create destroy ]
   resources :members, only: %i[ create update destroy ]
-  resources :groups
+  resources :groups, only: %i[ show edit update destroy new create ]
   devise_for :users
 
   root to: "static_pages#home"

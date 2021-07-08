@@ -1,6 +1,8 @@
-h1.is-size-3 Editing Group
--flash.each do |type, msg|
-  = msg
+.is-size-3
+	= link_to "#{@group.title}", group_path(@group.id)
+.has-background-warning-dark.has-text-white
+	-flash.each do |type, msg|
+		= msg
 - @members.each do |m|
 	= form_with model: m, method: :patch do |form|
 		.field
