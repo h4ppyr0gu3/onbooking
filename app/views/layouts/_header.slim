@@ -1,10 +1,23 @@
-a href="/"
-  .is-size-3.ml-5 Tickets
-- if user_signed_in?
-  = link_to "Log out", destroy_user_session_path, method: :delete, class: "button ", data: { confirm: 'Are you sure you want to Logout your account'} 
-  = link_to "Delete", user_registration_path, method: :delete, class: "button is-danger ", data: { confirm: 'Are you sure you want to delete your account' }
-- else
-  .buttons
-    = link_to "Sign up", new_user_registration_path, class: "button is-primary"
-    = link_to "Log in", new_user_session_path, class: "button is-light"
-hr
+nav.navbar role="navigation" aria-label="main navigation"
+  .navbar-brand
+    a.navbar-item href="/" 
+      h1.title Tickets
+
+    a.navbar-burger role="button" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample"
+      span aria-hidden="true"
+      span aria-hidden="true"
+      span aria-hidden="true"
+
+  .navbar-menu id="navbarBasicExample"
+    .navbar-start
+
+    .navbar-end
+      = link_to "Create group", new_group_path, class: "navbar-item"
+      .navbar-item
+        .buttons
+          - if user_signed_in?
+            = link_to "Log out", destroy_user_session_path, method: :delete, class: "button is-danger", data: { confirm: 'Are you sure you want to Logout your account'} 
+            = link_to "Account", edit_user_registration_path, class: "button is-light"
+          - else
+            = link_to "Sign up", new_user_registration_path, class: "button is-primary"
+            = link_to "Log in", new_user_session_path, class: "button is-light"

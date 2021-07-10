@@ -8,10 +8,23 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'navbar_burger', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
-    <%= render "layouts/header" %>
+    <div class="container">
+      <%= render "layouts/header" %>
+
+      <% if flash.any? %>
+        <div class="notification">
+          <button class="delete"></button>
+          <% flash.each do |type, msg| %>
+            <%= msg %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>

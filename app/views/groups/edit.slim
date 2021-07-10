@@ -1,37 +1,39 @@
-.is-size-3
-	= link_to "#{@group.title}", group_path(@group.id)
-.has-background-warning-dark.has-text-white
-	-flash.each do |type, msg|
-		= msg
-- @members.each do |m|
-	= form_with model: m, method: :patch do |form|
-		.field
-			.label Name
-			.control
-				= form.text_field :name, class: "input"
-		.field.is-grouped
-			.control
+.container.is-flex.is-justify-content-center
+	.is-flex.is-justify-content-center style="flex-flow: column"
+		- @members.each do |m|
+			.box.is-width-500px
+				= form_with model: m, method: :patch do |form|
+					.field
+						.label Name
+						.control
+							= form.text_field :name, class: "input"
+					.field.is-grouped
+						.control
+							= form.submit "Update", class: "button is-link"
+						.control
+							= link_to "Remove", member_path(m.id, group_id: @group.id), method: :delete, class: "button is-danger"
+		.box.is-width-500px
+			= form_with model: @member, method: :post, url: members_path do |form|
+				.field
+					.label Name
+					.control
+						= form.text_field :name, class: "input"
+				= form.hidden_field(:group_id, value: @group.id)
 				= form.submit class: "button is-link"
-			.control
-				= link_to "Remove", member_path(m.id, group_id: @group.id), method: :delete, class: "button is-danger"
 
-= form_with model: @member, method: :post, url: members_path do |form|
-	.field
-		.label Name
-		.control
-			= form.text_field :name, class: "input"
-	= form.hidden_field(:group_id, value: @group.id)
-	= form.submit class: "button is-link"
-
-= form_with model: @group, method: :patch do |form|
-	.field
-		.label Title
-		.control
-			= form.text_field :title, class: "input"
-	.field
-		.label Description
-		.control
-			= form.text_area :description, class: "textarea"
-	.field
-		.control
-			= form.submit class: "button is-primary"
+		.box.is-width-500px
+			h1.title
+				= link_to "#{@group.title}", group_path(@group.id)
+			= form_with model: @group, method: :patch do |form|
+				.field
+					.label Title
+					.control
+						= form.text_field :title, class: "input"
+				.field
+					.label Description
+					.control
+						= form.text_area :description, class: "textarea"
+				.field
+					.control
+						= form.submit class: "button is-primary"
+		

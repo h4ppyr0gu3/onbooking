@@ -27,3 +27,21 @@ hr {
   padding: 0px;
   margin: 0px;
 }
+
+body, html {
+  height: 100%;
+}
+
+.is-fullheight {
+  height: 100%;
+}
+
+.is-width-500px {
+  max-width: 500px;
+  min-width: 500px;
+
+  @include touch {
+    min-width: 100%;
+    max-width: 100%;
+  }
+}
